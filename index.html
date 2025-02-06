@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Object Detection</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Upload an Image for Object Detection</h2>
+        <input type="file" id="imageInput">
+        <button onclick="uploadImage()">Upload</button>
+        
+        <h3>Detected Objects:</h3>
+        <ul id="objectsList"></ul>
+        
+        <p id="errorMessage" class="error" style="display: none;"></p>
+    </div>
+
+    <script>
+        function uploadImage() {
+            let input = document.getElementById('imageInput');
+            let errorMessage = document.getElementById('errorMessage');
+            errorMessage.style.display = 'none';
+
+            if (input.files.length === 0) {
+                alert("Please select an image");
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append("file", input.files[0]);
+
+            fetch("/upload", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                let objectsList = document.getElementById('objectsList');
+                objectsList.innerHTML = "";
+                if (data.objects) {
+                    data.objects.forEach(obj => {
+                        let listItem = document.createElement('li');
+                        listItem.textContent = `${obj.label} (Confidence: ${obj.confidence.toFixed(2)})`;
+                        objectsList.appendChild(listItem);
+                    });
+                } else {
+                    objectsList.innerHTML = "<li>No objects detected</li>";
+                }
+            })
+            .catch(error => {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = "Error: " + error;
+            });
+        }
+    </script>
+</body>
+</html>
