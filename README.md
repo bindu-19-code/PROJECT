@@ -6,9 +6,9 @@ This app allows users to upload images, and a pre-trained AI model (e.g., YOLO) 
 ## Features
 Upload images and detect objects.
 Labels detected objects with bounding boxes.
-Built with Python (Flask/FastAPI) and JavaScript (React or plain JS).
+Built with Python (Flask/FastAPI) and JavaScript 
 
 ## Technologies
-Frontend: HTML, CSS, JS (React or vanilla)
-Backend: Python (Flask/FastAPI), YOLO (or other pre-trained models)
-Hosting: Vercel (or any free hosting)
+Frontend: HTML, CSS, JS 
+Backend: Python (Flask/FastAPI), YOLO 
+Hosting: Vercel 
