@@ -11,4 +11,3 @@ Built with Python (Flask/FastAPI) and JavaScript
 ## Technologies
 Frontend: HTML, CSS, JS 
 Backend: Python (Flask/FastAPI), YOLO 
-Hosting: Vercel 
